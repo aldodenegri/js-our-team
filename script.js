@@ -38,11 +38,12 @@ const teamMembers = [
 ];
 
 const teamContainer = document.getElementById('teamContainer');
+const btn = document.getElementById('addMemberBtn');
 
-        for (let i = 0; i < teamMembers.length; i++) {
-            const member = teamMembers[i];
+for (let i = 0; i < teamMembers.length; i++) {
+  const member = teamMembers[i];
 
-            const cardHTML = `
+  const cardHTML = `
                 <div class="col">
                     <div class="card h-100 border-0 shadow-sm text-center team-card">
                         <div class="pt-4">
@@ -57,5 +58,35 @@ const teamContainer = document.getElementById('teamContainer');
                 </div>
             `;
 
-            teamContainer.innerHTML += cardHTML;
-        }
+  teamContainer.innerHTML += cardHTML;
+}
+
+
+btn.addEventListener("click", function () {
+  teamMembers.push({
+    name: "Aldo De Negri",
+    role: "Junior Developer",
+    email: "aldo.denegri@team.com",
+    img: ""
+  });
+
+  const nuovaCard = `
+                <div class="col">
+                    <div class="card h-100 border-0 shadow-sm text-center team-card">
+                        <div class="pt-4">
+                            <img src="${teamMembers[teamMembers.length - 1].img}" class="team-avatar rounded-circle" alt="${teamMembers[teamMembers.length - 1].name}">
+                        </div>
+                        <div class="card-body pt-2">
+                            <h5 class="card-title fw-bold mb-1">${teamMembers[teamMembers.length - 1].name}</h5>
+                            <p class="text-primary small fw-bold">${teamMembers[teamMembers.length - 1].role}</p>
+                            <p class="text-muted small">${teamMembers[teamMembers.length - 1].email}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+  teamContainer.innerHTML += nuovaCard;
+  btn.disabled = true;
+  btn.textContent = "Membro aggiunto!";
+  btn.classList.replace("btn-success", "btn-secondary");
+});
